@@ -74,7 +74,9 @@ export const SiteIcon = ({ className, siteId, onLongPress }: SiteIconPropsType) 
         alt={site.title}
         className={clsx('h-3/4', touchAction)}
       />
-      <p className={clsx('overflow-hidden text-ellipsis whitespace-nowrap', touchAction)}>
+      <p
+        className={clsx('max-w-full overflow-hidden text-ellipsis whitespace-nowrap', touchAction)}
+      >
         {site.title}
       </p>
     </div>
