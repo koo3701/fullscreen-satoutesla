@@ -34,7 +34,7 @@ export const SiteIconEditModal = ({
   const [sites, setSites] = useContext(SiteListContext);
   const site = useSite(siteId);
 
-  const [title, setTitle, handleChangeUrl, url, setUrl, handleChangeTitle] = useChangeIcon(
+  const [title, setTitle, handleChangeTitle, url, setUrl, handleChangeUrl] = useChangeIcon(
     site?.title,
     site?.url
   );
@@ -52,12 +52,10 @@ export const SiteIconEditModal = ({
   };
 
   const handleSave = () => {
-    if (setSites) {
-      if (site !== undefined) {
-        setSites(sites.map((s) => (s.id === site.id ? { ...s, title, url } : s)));
-      } else {
-        setSites([...sites, { id: uuidv4(), url, title, order: sites.length }]);
-      }
+    if (site !== undefined) {
+      setSites(sites.map((s) => (s.id === site.id ? { ...s, title, url } : s)));
+    } else {
+      setSites([...sites, { id: uuidv4(), url, title, order: sites.length }]);
     }
 
     onClose();

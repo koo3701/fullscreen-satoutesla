@@ -14,11 +14,11 @@ export const useChangeIcon: (
   const [title, setTitle] = useState(initialTitle);
   const [url, setUrl] = useState(initialUrl);
 
-  const handleChangeUrl: ComponentProps<'input'>['onChange'] = (event) =>
-    setUrl(event.target.value);
-
   const handleChangeTitle: ComponentProps<'input'>['onChange'] = (event) =>
     setTitle(event.target.value);
 
-  return [title, setTitle, handleChangeUrl, url, setUrl, handleChangeTitle];
+  const handleChangeUrl: ComponentProps<'input'>['onChange'] = (event) =>
+    setUrl(event.target.value);
+
+  return [title, setTitle, handleChangeTitle, url, setUrl, handleChangeUrl];
 };

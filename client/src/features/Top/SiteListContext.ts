@@ -7,5 +7,5 @@ import { SitesType } from '@/features/Top/type';
  * @package
  */
 export const SiteListContext = createContext<
-  [SitesType, React.Dispatch<React.SetStateAction<SitesType>> | undefined]
->([defaultSiteList, undefined]);
+  [SitesType, React.Dispatch<React.SetStateAction<SitesType>>]
+>([defaultSiteList, () => {}]);
