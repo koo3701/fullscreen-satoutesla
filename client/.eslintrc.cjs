@@ -76,17 +76,6 @@ module.exports = {
         filenameLoophole: false,
       },
     ],
-    'no-restricted-imports': [
-      'error',
-      {
-        paths: [
-          {
-            name: 'axios',
-            message: 'Use @lib/axios',
-          },
-        ],
-      },
-    ],
     'jsx-a11y/label-has-associated-control': [
       'error',
       {

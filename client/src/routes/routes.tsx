@@ -1,9 +1,6 @@
-import { RouteObject } from 'react-router-dom';
+import { Navigate, RouteObject } from 'react-router-dom';
 
-import { lazyImport } from '@/utils/lazyImports';
-
-const { NotFound } = lazyImport(() => import('../features/NotFound'), 'NotFound');
-const { Top } = lazyImport(() => import('../features/Top'), 'Top');
+import { Top } from '@/features/Top';
 
 /**
  * @package
@@ -11,7 +8,7 @@ const { Top } = lazyImport(() => import('../features/Top'), 'Top');
 export const routes = [
   {
     path: '*',
-    element: <NotFound />,
+    element: <Navigate to="/" replace />,
   },
   {
     path: '/',
