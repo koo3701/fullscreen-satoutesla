@@ -41,7 +41,7 @@ export const Top = () => {
       <div className="flex flex-row flex-wrap p-5">
         <SiteIconList onDragEnd={handleDragEnd} sites={sites} />
       </div>
-      <FavMode className="absolute right-0 top-0 m-1" />
+      <FavMode className="absolute right-0 top-0 m-2" />
       <SiteIconAddButton className="absolute right-0 bottom-0 m-1" />
     </SiteListContext.Provider>
   );
