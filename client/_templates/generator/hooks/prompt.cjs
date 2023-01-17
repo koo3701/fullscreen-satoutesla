@@ -3,7 +3,7 @@ module.exports = [
     type: 'input',
     name: 'dir',
     message: 'Where is the directory?',
-    validate: (ans) => ans.startsWith('src/hooks'),
+    validate: (ans) => /src\/.*hooks.*/.test(ans),
   },
   {
     type: 'input',
