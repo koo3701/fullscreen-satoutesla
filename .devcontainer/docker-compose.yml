@@ -1,8 +1,4 @@
 services:
-  server:
-    volumes:
-      - .:/workspaces:cached
-    command: sleep infinity
   client:
     volumes:
       - .:/workspaces:cached

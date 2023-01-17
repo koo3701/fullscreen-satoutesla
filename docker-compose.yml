@@ -14,21 +14,6 @@ services:
       - bridge
     command: sh -c "yarn && yarn dev"
 
-  server: # server用のコンテナ
-    build:
-      context: server
-      dockerfile: Dockerfile
-    container_name: server
-    tty: true
-    volumes:
-      - ./server:/server
-    working_dir: /server
-    expose:
-      - 3000
-    networks:
-      - bridge
-    command: sh -c "deno task start"
-
 networks:
   bridge:
     driver: bridge
