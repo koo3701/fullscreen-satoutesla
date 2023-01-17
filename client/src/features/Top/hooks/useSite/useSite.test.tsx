@@ -1,13 +1,16 @@
-import React from 'react';
+import { cleanup, renderHook } from '@testing-library/react';
+import { expect, test } from 'vitest';
 
-import { render, screen } from '@testing-library/react';
-
-import { SiteIcon } from '@/features/Top/SiteIconList/SiteIcon';
+import { useSite } from '@/features/Top/hooks/useSite';
 import { SiteListContext } from '@/features/Top/SiteListContext';
 import { SitesType } from '@/features/Top/type';
 
-describe('features/Top/SiteIconList/SiteIcon', () => {
-  test('Attributes', () => {
+describe('hooks/useSite', () => {
+  beforeEach(() => {
+    cleanup();
+  });
+
+  test('return text', async () => {
     const idText = (Math.random() + 1).toString(36).substring(7);
     const urlText = (Math.random() + 1).toString(36).substring(7);
     const titleText = (Math.random() + 1).toString(36).substring(7);
@@ -21,13 +24,10 @@ describe('features/Top/SiteIconList/SiteIcon', () => {
       <SiteListContext.Provider value={value}>{children}</SiteListContext.Provider>
     );
 
-    render(<SiteIcon siteId={idText} onLongPress={() => {}} />, { wrapper });
-    expect(screen.getByRole('img')).toHaveAttribute(
-      'src',
-      `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${encodeURIComponent(
-        urlText
-      )}&size=128`
-    );
-    expect(screen.getByText(titleText)).toBeInTheDocument();
+    const { result } = renderHook(() => useSite(idText), { wrapper });
+
+    expect(result.current?.id).toBe(idText);
+    expect(result.current?.url).toBe(urlText);
+    expect(result.current?.title).toBe(titleText);
   });
 });

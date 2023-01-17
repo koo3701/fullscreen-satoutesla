@@ -38,7 +38,7 @@ export const SiteIcon = ({ className, siteId, onLongPress }: SiteIconPropsType) 
   const handleLongPress = useCallback(() => {
     onLongPress(siteId);
   }, [onLongPress, siteId]);
-  const longPressListener = useLongPress(() => handleLongPress, {
+  const longPressListener = useLongPress(handleLongPress, {
     threshold: 750,
     onCancel: (_, meta) => {
       if (meta.reason !== LongPressEventReason.CANCELED_BY_MOVEMENT) handleShortPress();
@@ -54,6 +54,7 @@ export const SiteIcon = ({ className, siteId, onLongPress }: SiteIconPropsType) 
 
   return site !== undefined ? (
     <div
+      data-testid="siteicon"
       className={clsx(
         'flex h-52 w-52 flex-col items-center justify-center',
         touchAction,
