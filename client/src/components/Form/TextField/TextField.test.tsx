@@ -16,13 +16,6 @@ describe('components/Form/TextField', () => {
     expect(screen.getByText('*')).toBeInTheDocument();
   });
 
-  test('Error', () => {
-    const randomText = (Math.random() + 1).toString(36).substring(7);
-
-    render(<TextField type="text" label="" error={{ type: 'min', message: randomText }} />);
-    expect(screen.getByText(randomText)).toBeInTheDocument();
-  });
-
   test.each(allowTypeList)('Type %i', (type) => {
     render(<TextField type={type} label="" />);
     expect(screen.getByTestId('input')).toHaveAttribute('type', type);

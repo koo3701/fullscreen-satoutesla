@@ -23,10 +23,10 @@ export const FavMode = ({ className }: FavModePropsType) => {
   return (
     <button
       type="button"
-      className={clsx('rounded-full bg-black hover:cursor-pointer', className)}
+      className={clsx('rounded-full bg-black p-2 hover:cursor-pointer', className)}
       onClick={handleClick}
     >
-      <MdStar size={50} color="white" />
+      <MdStar size={35} color="white" />
     </button>
   );
 };
