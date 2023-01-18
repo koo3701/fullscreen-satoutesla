@@ -1,6 +1,6 @@
-# react-vite-boilerplate
+# fullscreen-satoutesla
 
-React+Vite Boilerplate
+Fullscreen Lancher for Tesla Browser
 
 ## Requirement
 
@@ -17,71 +17,4 @@ React+Vite Boilerplate
 docker-compose up -d
 ```
 
-### Development
-
-#### Server Side
-
-Open `server` directory in Dev Container and
-
-```sh
-deno task start
-```
-
-#### Client Side
-
-Open `client` directory in Dev Container and
-
-```sh
-yarn
-yarn dev
-```
-
-### Development Tools
-
-#### Server Side
-
-##### Testing
-
-```sh
-deno task test
-```
-
-#### Client Side
-
-##### Testing
-
-```sh
-yarn test
-```
-
-##### coverage
-
-```sh
-yarn coverage
-```
-
-##### Storybook
-
-```sh
-yarn storybook
-```
-
-##### Template Generator
-
-- Component
-
-```sh
-yarn generate:components
-```
-
-- Hooks
-
-```sh
-yarn generate:hooks
-```
-
-- Utility Function
-
-```sh
-yarn generate:functions
-```
+access `localhost:3000`
