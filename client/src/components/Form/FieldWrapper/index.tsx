@@ -18,7 +18,6 @@ export const FieldWrapper = ({
   className,
   htmlFor,
   label,
-  error,
   required,
   children,
 }: FieldWrapperPropsType) => (
@@ -28,6 +27,5 @@ export const FieldWrapper = ({
       {required ? <span className="pl-1 text-red-400">*</span> : null}
     </label>
     {children}
-    {error ? <p className="text-red-500">{error.message}</p> : null}
   </div>
 );

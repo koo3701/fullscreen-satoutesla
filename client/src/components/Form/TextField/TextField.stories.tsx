@@ -28,9 +28,3 @@ Default.args = {};
  */
 export const Required = Template.bind({});
 Required.args = { required: true };
-
-/**
- * @private
- */
-export const Error = Template.bind({});
-Error.args = { error: { type: 'min', message: 'Error Message !' } };
