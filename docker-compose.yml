@@ -1,19 +1,24 @@
 services:
   client: # client用のコンテナ
     build:
-      context: client
+      context: .
       dockerfile: Dockerfile
     container_name: client
     tty: true
     volumes:
-      - ./client:/client
-    working_dir: /client
+      - .:/workspace
+      - ./client:/workspace/client
+    working_dir: /workspace/client
     ports:
       - 3000:3000
+      - 5001:5001
+      - 8080:8080
+      - 5000:5000
+      - 9199:9199
+      - 4000:4000
     networks:
       - bridge
     command: sh -c "yarn && yarn dev"
-
 networks:
   bridge:
     driver: bridge
