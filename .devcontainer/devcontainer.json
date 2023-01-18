@@ -1,8 +1,8 @@
 {
   "name": "container client",
-  "dockerComposeFile": ["../docker-compose.yml", "../.devcontainer/docker-compose.yml"],
+  "dockerComposeFile": ["../docker-compose.yml", "./docker-compose.yml"],
   "service": "client",
-  "workspaceFolder": "/client",
+  "workspaceFolder": "/workspace/client",
   "extensions": [
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
