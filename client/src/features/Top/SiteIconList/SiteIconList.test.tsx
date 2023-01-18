@@ -43,13 +43,30 @@ describe('features/Top/SiteIconList', () => {
 
   test('Multiple Icons', async () => {
     const Core = await import('@dnd-kit/core');
+
+    type OnDragEndType = (event: {
+      active: { id: string | number };
+      over: { id: string | number };
+    }) => SitesType;
+    let handleDragEnd: OnDragEndType = () => defaultSiteList;
     // @ts-ignore
     // eslint-disable-next-line react/function-component-definition
-    Core.DndContext = ({ children }: { children: React.ReactNode }) => <div>{children}</div>;
+    Core.DndContext = ({
+      onDragEnd,
+      children,
+    }: {
+      onDragEnd: OnDragEndType;
+      children: React.ReactNode;
+    }) => {
+      handleDragEnd = onDragEnd;
+      return <div>{children}</div>;
+    };
 
+    const setSites = vi.fn<[(sites: SitesType) => SitesType], void>();
     const value: [SitesType, React.Dispatch<React.SetStateAction<SitesType>>] = [
       defaultSiteList,
-      vi.fn(),
+      // @ts-ignore
+      setSites,
     ];
 
     const wrapper = ({ children }: { children: React.ReactNode }) => (
@@ -59,5 +76,54 @@ describe('features/Top/SiteIconList', () => {
     render(<SiteIconList onLongPress={() => {}} />, { wrapper });
 
     expect(screen.getAllByRole('img').length).toBe(defaultSiteList.length);
+
+    handleDragEnd({ active: { id: 2 }, over: { id: 4 } });
+
+    const correct = [value[0][0], value[0][2], value[0][3], value[0][1], ...value[0].slice(4)].map(
+      (site, i) => ({ ...site, order: i })
+    );
+    expect(setSites).toHaveBeenCalledOnce();
+    expect(setSites.mock.calls[0][0](value[0])).toStrictEqual(correct);
+  });
+
+  test('Invalid Id', async () => {
+    const Core = await import('@dnd-kit/core');
+
+    type OnDragEndType = (event: {
+      active: { id: string | number };
+      over: { id: string | number };
+    }) => SitesType;
+    let handleDragEnd: OnDragEndType = () => defaultSiteList;
+    // @ts-ignore
+    // eslint-disable-next-line react/function-component-definition
+    Core.DndContext = ({
+      onDragEnd,
+      children,
+    }: {
+      onDragEnd: OnDragEndType;
+      children: React.ReactNode;
+    }) => {
+      handleDragEnd = onDragEnd;
+      return <div>{children}</div>;
+    };
+
+    const setSites = vi.fn<[(sites: SitesType) => SitesType], void>();
+    const value: [SitesType, React.Dispatch<React.SetStateAction<SitesType>>] = [
+      defaultSiteList,
+      // @ts-ignore
+      setSites,
+    ];
+
+    const wrapper = ({ children }: { children: React.ReactNode }) => (
+      <SiteListContext.Provider value={value}>{children}</SiteListContext.Provider>
+    );
+
+    render(<SiteIconList onLongPress={() => {}} />, { wrapper });
+
+    handleDragEnd({ active: { id: 2 }, over: { id: 'notexistid' } });
+
+    const correct = value[0];
+    expect(setSites).toHaveBeenCalledOnce();
+    expect(setSites.mock.calls[0][0](value[0])).toStrictEqual(correct);
   });
 });

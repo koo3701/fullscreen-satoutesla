@@ -7,4 +7,9 @@ describe('components/Elements/Divider', () => {
     render(<Divider />);
     expect(screen.getByTestId('divider')).toBeInTheDocument();
   });
+
+  test('Divide vertical', () => {
+    render(<Divider vertical />);
+    expect(screen.getByTestId('divider')).toBeInTheDocument();
+  });
 });
